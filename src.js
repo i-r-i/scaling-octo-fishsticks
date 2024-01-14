@@ -1,12 +1,13 @@
 function display_time() {
     const time = new Date();
     const targetTime = new Date();
+    e1 = document.getElementById("display_top")
     e = document.getElementById("date_time");
-    e.textContent = ""
-    switch (time.getDay()) {
+    e1.textContent = ""
+    switch (time.getDate()) {
         case 0:
-            e.textContent += "No school today! ";
-            targetTime.setDay(targetTime.getDate() - 1)
+            e1.textContent += "No school today! ";
+            targetTime.setDate(targetTime.getDate() - 1)
             break;
         case 1:
         case 5:
@@ -20,19 +21,21 @@ function display_time() {
         default:
             targetTime.setHours(11, 0, 0, 0)
     }
-    const change = (targetTime - time);
+
+    var change = (targetTime - time);
 
     if (change <= 0) {
-        e.textContent += "Time until school:\n"
+        e1.textContent += "SCHOOL"
         targetTime.setDate(targetTime.getDate() + 1)
         targetTime.setHours(8, 45, 0, 0)
+        change = Math.abs(targetTime - time)
     } else {
-        e.textContent += "Time until home:\n"
+        e1.textContent += "HOME"
     }
 
-    const hoursDifference = Math.floor(change / (1000 * 60 * 60));
-    const minutesDifference = Math.floor((change % (1000 * 60 * 60)) / (1000 * 60));
-    const secondsDifference = Math.floor((change % (1000 * 60)) / 1000);
-    e.textContent += `${hoursDifference}:${minutesDifference}:${secondsDifference}`;
+    const hoursDifference = (Math.floor(change / (1000 * 60 * 60))).toString().padStart(2, "0");
+    const minutesDifference = (Math.floor((change % (1000 * 60 * 60)) / (1000 * 60))).toString().padStart(2, "0");
+    const secondsDifference = (Math.floor((change % (1000 * 60)) / 1000)).toString().padStart(2, "0");
+    e.textContent = `${hoursDifference}:${minutesDifference}:${secondsDifference}`;
 }
 setInterval(display_time, 1000);
