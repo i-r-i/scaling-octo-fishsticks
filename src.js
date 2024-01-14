@@ -5,9 +5,8 @@ function display_time() {
     e.textContent = ""
     switch (time.getDay()) {
         case 0:
-            e.textContent += "No school today!";
-            targetTime.setDate(targetTime.getDate() + 1)
-            targetTime.setHours(8, 45, 0, 0)
+            e.textContent += "No school today! ";
+            targetTime.setDay(targetTime.getDate() - 1)
             break;
         case 1:
         case 5:
@@ -23,9 +22,17 @@ function display_time() {
     }
     const change = (targetTime - time);
 
+    if (change <= 0) {
+        e.textContent += "Time until school:\n"
+        targetTime.setDate(targetTime.getDate() + 1)
+        targetTime.setHours(8, 45, 0, 0)
+    } else {
+        e.textContent += "Time until home:\n"
+    }
+
     const hoursDifference = Math.floor(change / (1000 * 60 * 60));
     const minutesDifference = Math.floor((change % (1000 * 60 * 60)) / (1000 * 60));
     const secondsDifference = Math.floor((change % (1000 * 60)) / 1000);
-    e.textContent = `${hoursDifference}:${minutesDifference}:${secondsDifference}`;
+    e.textContent += `${hoursDifference}:${minutesDifference}:${secondsDifference}`;
 }
 setInterval(display_time, 1000);
