@@ -8,44 +8,51 @@
         }
 
         body {
-            background-color: rgb(19, 19, 19);
+            background-color: rgb(25, 25, 25);
         }
 
         p {
             font-family: Arial, Helvetica, sans-serif;
-            color: antiquewhite;
+            color: rgb(255, 255, 255);
             text-align: center;
             font-size: 20px;
             margin: 1px;
         }
 
-        #date_time {
+        #date_time,
+        #background_date_time {
             font-family: "7-segment", "Arial";
             font-size: 30px;
+            margin: 5px;
+            grid-area: 1 / 1 / 1/ 1;
+        }
+
+        #background_date_time {
+            color: rgb(35, 35, 35);
         }
 
         #box {
             border-width: 2px;
-            border-color: antiquewhite;
+            border-color: rgb(255, 255, 255);
             border-style: solid;
             width: fit-content;
             height: fit-content;
-
-
-            padding-top: 0px;
-            padding-bottom: 0px;
-            padding-right: 10px;
-            padding-left: 3px;
+            display: grid;
         }
     </style>
     <script src="src.js"></script>
 </head>
 
 <body>
-    <p id="display_top"></p>
-    <div style="display: flex; justify-content: center;">
-        <div id="box">
-            <p id="date_time"></p>
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div>
+            <p id="display_top"></p>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <div id="box">
+                <p id="background_date_time">00:00:00</p>
+                <p id="date_time"></p>
+            </div>
         </div>
     </div>
 
