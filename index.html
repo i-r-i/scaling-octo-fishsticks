@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<head>
+    <style>
+        body {
+            background-color: rgb(45, 63, 71);
+        }
+
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+            color: antiquewhite;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p id="date_time">hey</p>
+    <button onclick="display_time()">Click</button>
+    <script type="text/javascript">
+        function display_time() {
+            const time = new Date();
+            const curtime = time.toLocaleTimeString();
+            document.getElementById("date_time").textContent = curtime;
+        }
+        setInterval(display_time, 1000);
+    </script>
+</body>
