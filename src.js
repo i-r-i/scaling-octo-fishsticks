@@ -21,7 +21,7 @@ function display_time() {
         default:
             targetTime.setHours(11, 0, 0, 0)
     }
-    const change = (targetTime - time) / 1000;
+    const change = (targetTime - time);
 
     const hoursDifference = Math.floor(change / (1000 * 60 * 60));
     const minutesDifference = Math.floor((change % (1000 * 60 * 60)) / (1000 * 60));
