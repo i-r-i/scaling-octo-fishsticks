@@ -37,5 +37,4 @@ function display_time() {
     const secondsDifference = (Math.floor((change % (1000 * 60)) / 1000)).toString().padStart(2, "0");
     e.textContent = `${hoursDifference}:${minutesDifference}:${secondsDifference}`;
 }
-display_time();
 setInterval(display_time, 1000);
