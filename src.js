@@ -6,7 +6,6 @@ function display_time() {
     e1.textContent = ""
     switch (time.getDay()) {
         case 0:
-            e1.textContent += "No school today! ";
             targetTime.setDate(targetTime.getDate() - 1)
             break;
         case 1:
@@ -24,12 +23,12 @@ function display_time() {
 
     var change = targetTime - time
     if (change <= 0) {
-        e1.textContent += "SCHOOL"
+        e1.textContent = "SCHOOL"
         targetTime.setDate(targetTime.getDate() + 1)
         targetTime.setHours(8, 45, 0, 0)
         change = Math.abs(targetTime - time)
     } else {
-        e1.textContent += "HOME"
+        e1.textContent = "HOME"
     }
 
 
