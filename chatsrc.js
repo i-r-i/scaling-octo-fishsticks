@@ -1,60 +1,47 @@
 function updateCountdown() {
     const now = new Date();
-    const schoolStartTimes = {
-        Monday: "08:45",
-        Tuesday: "08:45",
-        Wednesday: "08:45",
-        Thursday: "08:45",
-        Friday: "08:45",
-        Saturday: "08:45"
-    };
+    const schoolStartTimes = (8, 45);
+
+    if (now.getDay() == 6) {
+        const changeTime = new Date();
+        changeTime.setDate(changeTime.getDate() + 1);
+        changeTime.setHours(schoolStartTimes[0], schoolStartTimes[1]);
+        formatDate(time - changeTime);
+    }
+
+    const schoolStart = new Date();
+    schoolStart.setHours(schoolStartTimes[0], schoolStartTimes[1]);
+
     const schoolEndTimes = {
-        Monday: "16:00",
-        Tuesday: "17:15",
-        Wednesday: "17:15",
-        Thursday: "17:15",
-        Friday: "16:00",
-        Saturday: "11:00"
+        0: (16, 0),
+        1: (17, 15),
+        2: (17, 15),
+        3: (17, 15),
+        4: (16, 0),
+        5: (11, 0)
     };
-
-    const dayOfWeek = now.toLocaleDateString('en-US', { weekday: 'long' });
-    const currentTime = now.getHours() * 60 * 60 + now.getMinutes() * 60 + now.getSeconds();
-    let countdownType = "SCHOOL";
-
-    if (currentTime >= timeToSeconds(schoolStartTimes[dayOfWeek]) && currentTime < timeToSeconds(schoolEndTimes[dayOfWeek])) {
-        countdownType = "HOME";
-    }
-
-    let targetTime;
-    if (countdownType === "school") {
-        targetTime = timeToSeconds(schoolStartTimes[dayOfWeek]);
-    } else {
-        targetTime = timeToSeconds(schoolEndTimes[dayOfWeek]);
-    }
-
-    const timeRemaining = targetTime - currentTime;
-    const hours = Math.floor(timeRemaining / 3600);
-    const minutes = Math.floor((timeRemaining % 3600) / 60);
-    const seconds = timeRemaining % 60;
-
-    const countdownElement = document.getElementById("date_time");
-    const countdownTypeElement = document.getElementById("display_top");
-
-    countdownElement.textContent = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
-    countdownTypeElement.textContent = countdownType;
 }
 
-function timeToSeconds(time) {
-    const [hours, minutes] = time.split(":");
-    return parseInt(hours) * 3600 + parseInt(minutes) * 60;
+function formatDate(time) {
+
+    // Converting time to correct format
+    time = Math.floor(Math.abs(time) / 1000);
+    const hours = Math.abs(Math.floor(time / 3600)).toString().padStart(2, "0");
+    const minutes = Math.abs(Math.floor((time % 3600) / 60)).toString().padStart(2, "0");
+    const seconds = Math.abs(time % 60).toString().padStart(2, "0");
+
+    // Displaying to HTML
+    const e = document.getElementById("date_time");
+    e.textContent = `${hours}:${minutes}:${seconds}`;
 }
 
-function formatTime(time) {
-    return time < 10 ? `0${time}` : time;
-}
+
 
 // Update the countdown every second
-setInterval(updateCountdown, 1000);
+setInterval(formatDate, 1000);
 
 // Initial call to set up the countdown
-updateCountdown();
+// updateCountdown();
+
+// TEST CODE HERE
+
