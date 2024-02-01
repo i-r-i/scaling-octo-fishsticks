@@ -7,8 +7,16 @@
             src: url("7segment.woff") format("woff");
         }
 
+        html {
+            height: 100%;
+        }
+
         body {
             background-color: rgb(25, 25, 25);
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            justify-content: center;
         }
 
         p {
@@ -22,8 +30,8 @@
         #date_time,
         #background_date_time {
             font-family: "7-segment", "Arial";
-            font-size: 30px;
-            margin: 5px;
+            font-size: 28vw;
+            margin: 1vw;
             grid-area: 1 / 1 / 1 / 1;
         }
 
@@ -32,28 +40,21 @@
         }
 
         #box {
-            border-width: 2px;
+            border-width: 1vw;
             border-color: rgb(255, 255, 255);
             border-style: solid;
-            width: fit-content;
-            height: fit-content;
             display: grid;
+            flex-grow: 1;
+            height: 100%;
         }
     </style>
     <script src="chatsrc.js"></script>
 </head>
 
 <body>
-    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-        <div>
-            <p id="display_top"></p>
-        </div>
-        <div style="display: flex; justify-content: center;">
-            <div id="box">
-                <p id="background_date_time">88:88:88</p>
-                <p id="date_time"></p>
-            </div>
-        </div>
+    <div id="box">
+        <p id="background_date_time">88:88:88</p>
+        <p id="date_time"></p>
     </div>
 
 </body>
